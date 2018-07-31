@@ -24,6 +24,7 @@ var twoSum = function(nums, target) {
     return null;
 };
 
+// hashMap: O(n)
 var twoSum = function(nums, target) {
   let map = {};
 
