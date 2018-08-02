@@ -29,3 +29,17 @@ var reverseLinkedList = function(head) {
 
     return result;
 };
+
+var reverseListInPlace = function(head) {
+  let prev = null;
+  let current = head;
+
+  while (current) {
+    temp = current.next;
+    current.next = prev;
+    prev = current;
+    current = temp;
+  }
+
+  return prev;
+}
