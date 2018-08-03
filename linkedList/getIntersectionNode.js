@@ -1,41 +1,47 @@
-var getLength = function(head) {
-  let length = 0;
-  while (head) {
-    length++;
-    head = head.next;
-  }
+var getListLength = function(head) {
+    let length = 0;
+    while (head) {
+        length += 1;
+        head = head.next;
+    }
 
-  return length;
+    return length;
 }
 
 var getIntersectionNode = function(headA, headB) {
-  if (!headA || !headB) {
-    return null;
-  }
+    let pointerA = headA;
+    let pointerB = headB;
+    let lengthA = getListLength(headA);
+    let lengthB = getListLength(headB);
 
-  let p1 = headA;
-  let p2 = headB;
-  let lengthA = getLength(headA);
-  let lengthB = getLength(headB);
-
-  if (lengthA <= lengthB) {
-    for (let i = 0; i < lengthB - lengthA; i++) {
-      p2 = p2.next;
+    if (pointerA === pointerB) {
+        return pointerA;
     }
-  } else {
-    for (let i = 0; i < lengthA - lengthB; i++) {
-      p1 = p1.next;
+
+    if (lengthA > lengthB) {
+        for (let i = 0; i < lengthA - lengthB; i++) {
+            if (pointerA) {
+             pointerA = pointerA.next;
+            }
+        }
+    } else {
+        for (let i = 0; i < lengthB - lengthA; i++) {
+            if (pointerB) {
+                pointerB = pointerB.next;
+            }
+        }
     }
-  }
 
-  while (p1 && p2 && p1 != p2) {
-    p1 = p1.next;
-    p2 = p2.next;
+    while (pointerA && pointerB && pointerA != pointerB) {
 
-    if (!p1 || !p2) {
-      return null;
+        pointerA = pointerA.next;
+        pointerB = pointerB.next;
+
+
+        if (!pointerA || !pointerB) {
+            return null;
+        }
     }
-  }
 
-  return p1;
-}
+    return pointerA;
+};
