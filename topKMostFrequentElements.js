@@ -55,3 +55,19 @@ var topKFrequent = function(nums, k) {
   return results.slice(0, k)
 
 };
+
+
+// alternate solution
+var topKFrequent = (nums, k) => {
+  const hash = {};
+  nums.forEach(el => {
+    hash[el] = hash[el] ? hash[el] += 1 : 1;
+  })
+
+  const sortedKeys = Object.keys(hash).sort((a, b) => hash[b] - hash[a]);
+
+  return sortedKeys.splice(0, k).map(el => Number(el));
+};
+
+
+console.log(topKFrequent([1, 1, 1, 2, 2, 3, 4, 4, 4, 4], 2))
