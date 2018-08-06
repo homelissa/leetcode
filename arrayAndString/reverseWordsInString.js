@@ -23,3 +23,25 @@ var reverseWords = function(str) {
 
   return reversed.join(" ");
 };
+
+
+var reverseWordsInPlace = function(str) {
+  str = str.split(" ");
+  let front = 0;
+  let back = str.length - 1;
+
+  while (front < back) {
+    swap(str, front, back)
+    front++;
+    back--;
+  }
+
+  return str.join(" ");
+}
+
+var swap = (arr, front, back) => {
+  let temp = arr[front];
+  arr[front] = arr[back];
+  arr[back] = temp;
+  return arr;
+}
