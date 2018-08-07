@@ -25,6 +25,8 @@ Output: [1,2,3]
  * @param {TreeNode} root
  * @return {number[]}
  */
+
+// recursive
 var preorderTraversal = function(root) {
     let list = [];
     helper(root, list);
@@ -40,3 +42,37 @@ var helper = function(root, list) {
     helper(root.left, list);
     helper(root.right, list);
 }
+
+
+// iterative
+
+var preorderTraversal = function(root) {
+    let stack = [];
+    let result = [];
+    let node = root;
+
+    if (!node) {
+        return [];
+    }
+
+    if (node === null) {
+        return;
+    }
+
+    stack.push(node);
+
+    while (stack.length > 0) {
+        let currNode = stack.pop();
+        result.push(currNode.val);
+
+        if (currNode.right) {
+            stack.push(currNode.right);
+        }
+
+        if (currNode.left) {
+            stack.push(currNode.left);
+        }
+    }
+
+    return result;
+};

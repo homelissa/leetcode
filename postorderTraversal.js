@@ -25,7 +25,8 @@ Output: [3,2,1]
  * @param {TreeNode} root
  * @return {number[]}
  */
- 
+
+// iterative
 var postorderTraversal = function(root) {
     let list = [];
     let stack = [];
@@ -49,3 +50,22 @@ var postorderTraversal = function(root) {
 
     return list;
 };
+
+
+// recursion
+var postorderTraversal = function(root) {
+    let list = [];
+    helper(root, list);
+    return list;
+
+};
+
+var helper = function(root, list) {
+    if (root === null) {
+        return;
+    }
+
+    helper(root.left, list);
+    helper(root.right, list);
+    list.push(root.val)
+}
