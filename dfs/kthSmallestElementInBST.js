@@ -38,21 +38,24 @@ Output: 3
  * @param {number} k
  * @return {number}
  */
+
+//relies on DFS in order traversal
+
  var kthSmallest = function(root, k) {
    let stack = [];
    let count = 0;
    let node = root;
 
    while (true){
-       if (node){
-           stack.push(node);
-           node = node.left;
-       } else {
-           if (stack.length == 0) break;
-           node = stack.pop();
-           count += 1;
-           if (count == k) return node.val;
-           node = node.right;
-       }
+     if (node){
+         stack.push(node);
+         node = node.left;
+     } else {
+         if (stack.length == 0) break;
+         node = stack.pop();
+         count += 1;
+         if (count == k) return node.val;
+         node = node.right;
+     }
    }
  };
