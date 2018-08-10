@@ -1,14 +1,9 @@
 var createhashMap = function(string) {
   let hashMap = {};
 
-  for (let i = 0; i < string.length; i++) {
-    let el = string[i];
-    if (hashMap[el] === undefined) {
-      hashMap[el] = 1;
-    } else {
-      hashMap[el] += 1;
-    }
-  }
+  string.split("").forEach(el => {
+      hashMap[el] = hashMap[el] ? hashMap[el] += 1 : 1;
+  }) 
 
   return hashMap;
 }

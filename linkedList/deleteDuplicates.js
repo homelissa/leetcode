@@ -25,6 +25,26 @@ Output: 1->2->3
  */
 
  var deleteDuplicates = function(head) {
+    let nullHead = new ListNode(null);
+    nullHead.next = head;
+    let prev = nullHead;
+    let current = head;
+
+    while (current && current.next) {
+        let temp = current.next;
+        if (current.val === temp.val) {
+            prev.next = temp;
+            current = temp;
+        } else {
+            prev = current;
+            current = current.next;
+        }
+    }
+
+    return nullHead.next;
+};
+
+ var deleteDuplicates = function(head) {
      let nullHead = new ListNode(null);
      nullHead.next = head;
      let prev = nullHead;
@@ -41,7 +61,7 @@ Output: 1->2->3
      }
 
      return nullHead.next;
- }; 
+ };
 
 var deleteDuplicates = function(head) {
   let current = head;
