@@ -42,3 +42,24 @@ var wordBreak = function(s, wordDict) {
 };
 
 console.log(wordBreak("tim", ["ti", "m"]));
+
+
+var wordBreak = function(s, wordDict) {
+  if (!wordDict || wordDict.length < 1) {
+    return false;
+  }
+
+  const cache = Array(s.length + 1).fill(false);
+  cache[0] = true;
+
+  for (let i = 1; i < s.length + 1; i++) {
+    for (let j = 0; j < i; j++) {
+      if (cache[j] && wordDict.indexOf(s.substring(j, i)) >= 0) {
+        cache[i] = true;
+        break;
+      }
+    }
+  }
+
+  return cache[s.length];
+}

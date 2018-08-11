@@ -28,6 +28,28 @@ Each element nums[i] will be an integer in the range [-1000, 1000].
  * @param {number[]} nums
  * @return {number}
  */
+
+ var getSum = nums => {
+   const reducer = (acc, current) => acc + current;
+   return nums.reduce(reducer);
+ }
+
+
+ var pivotIndex = nums => {
+   for (let i = 1; i < nums.length; i++) {
+     let leftSum = getSum(nums.slice(0, i));
+     let rightSum = getSum(nums.slice(i + 1));
+     if (leftSum === rightSum) {
+       return i;
+     }
+   }
+
+   return -1;
+ }
+
+// 
+
+
 var pivotIndex = function(nums) {
   const reducer = (acc, currentValue) => acc + currentValue;
 
