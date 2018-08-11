@@ -10,6 +10,17 @@ Input : arr = {5, 7, 2, 7, 5, 2, 5}
 Output : 5
 */
 
+var oddNumberofTimes = nums => {
+  let hashMap = {};
+
+  nums.forEach(el => {
+    hashMap[el] = hashMap[el] ? hashMap[el] += 1 : 1;
+  })
+
+  const sortedKeys = Object.keys(hashMap).sort((a, b) => hashMap[b] % 2 - hashMap[a] % 2);
+  return sortedKeys[0];
+}
+
 var oddNumberofTimes = function(nums) {
   const hashMap = {};
 

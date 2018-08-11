@@ -1,3 +1,4 @@
+// Monkey Patch
 Array.prototype.bubbleSort = function(cb) {
   if (!cb) {
     cb = function(x, y) {
@@ -32,4 +33,33 @@ Array.prototype.bubbleSort = function(cb) {
   }
 
   return bubble;
+}
+
+
+// function style
+var bubbleSort = (arr, cb) => {
+  if (!cb) {
+    cb = (x, y) => (x <= y ? -1 : 1)
+  }
+
+  sorted = false;
+  while (!sorted) {
+    sorted = true;
+    for (let i = 0; i < arr.length; i++) {
+      let current = arr[i];
+      let next = arr[i + 1];
+
+      if (i === arr.length - 1) {
+        continue;
+      }
+
+      if (cb(current, next) === 1) {
+        arr[i + 1] = current;
+        arr[i] = next;
+        sorted = false;
+      }
+    }
+  }
+
+  return arr;
 }

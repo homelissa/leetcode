@@ -17,3 +17,22 @@ var duplicates = (arr) => {
 }
 
 console.log(duplicates([1, 3, 4, 3, 0, 3, 0])); // { 0: [ 4, 6 ], 3: [ 1, 3, 5 ] }
+
+var duplicates = arr => {
+  let hashMap = {};
+  let dupes = {};
+
+  arr.forEach((el, idx) => {
+    hashMap[el] = hashMap[el] ? hashMap[el] : [];
+    hashMap[el].push(idx)
+  })
+
+  const duplicateKeys = Object.keys(hashMap).filter(el => (hashMap[el].length > 1));
+
+  duplicateKeys.forEach(el => {
+    dupes[el] = hashMap[el]
+  })
+
+  return dupes;
+
+}

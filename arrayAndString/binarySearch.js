@@ -19,3 +19,20 @@ function myBsearch(array, target) {
 console.log(myBsearch([1,2,3,4,5], 2)); // 1
 console.log(myBsearch([1,2,3,4,5], 5)); // 4
 console.log(myBsearch([1,2,3,4,5], 6)); // -1
+
+var binarySearch = (arr, target) => {
+  if (arr.length < 1) {
+    return -1;
+  }
+
+  let mid = Math.floor(arr.length / 2);
+
+  if (arr[mid] === target) {
+    return mid;
+  } else if (arr[mid] > target) {
+    return binarySearch(arr.slice(0, mid), target);
+  } else {
+    let result = binarySearch(arr.slice(mid + 1), target);
+    return result === -1 ? -1 : result + mid + 1;
+  }
+}
