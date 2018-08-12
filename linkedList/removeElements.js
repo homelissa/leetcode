@@ -17,6 +17,27 @@ Output: 1->2->3->4->5
  * @param {number} val
  * @return {ListNode}
  */
+
+var removeElements = function(head, val) {
+   let nullHead = new ListNode(null);
+   nullHead.next = head;
+   let prev = nullHead;
+   let current = head;
+
+   while (current) {
+       let temp = current.next;
+       if (current.val === val) {
+           prev.next = temp;
+           current = temp;
+       } else {
+           prev = current;
+           current = current.next;
+       }
+   }
+
+   return nullHead.next;
+};
+
 var removeElements = function(head, val) {
    let nullHead = new ListNode(null);
    nullHead.next = head;

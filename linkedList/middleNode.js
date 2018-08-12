@@ -9,6 +9,30 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
+
+ var getListLength = (head) => {
+     let length = 0;
+     while (head) {
+         length += 1;
+         head = head.next;
+     }
+
+     return length;
+ }
+
+ var middleNode = function(head) {
+     let length = getListLength(head);
+     let mid = Math.floor(length / 2);
+     let current = head;
+
+     for (let i = 0; i < mid; i++) {
+         head = head.next;
+     }
+
+     return head;
+ };
+
+
 var middleNode = function(head) {
     console.log(head)
     let length = getListLength(head);
