@@ -43,3 +43,43 @@ var minSubArrayLen = function(s, nums) {
 };
 
 console.log(minSubArrayLen(7,[2,3,1,2,4,3]));
+
+//
+var getSum = (nums) => {
+  const reducer = (acc, current) => acc + current;
+  return nums.reduce(reducer);
+}
+
+var getSubArrays = (nums) => {
+  let subs = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = 0; j < nums.length; j++) {
+      let sub = nums.slice(i, j + 1);
+      if (sub.length > 0 && !subs.includes(sub)) {
+        subs.push(sub);
+      }
+    }
+  }
+
+  return subs;
+}
+
+var minSubArrayLen = function(s, nums) {
+    if (nums.length < 1) {
+        return 0;
+    }
+
+   let subArrays = getSubArrays(nums);
+
+   const meetsMinLength = subArrays.filter(el => (getSum(el) >= s));
+
+    if (meetsMinLength.length < 1) {
+        return 0;
+    }
+
+    const sortedMins = meetsMinLength.sort((a, b) => a.length - b.length);
+
+    let result = sortedMins[0];
+    return result.length;
+};
