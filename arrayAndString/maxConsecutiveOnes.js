@@ -9,19 +9,19 @@ Explanation: The first two digits or the last three digits are consecutive 1s.
 */
 
 var findMaxConsecutiveOnes = function(nums) {
+  let largest = 0;
   let current = 0;
-  let longest = 0;
 
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] === 1) {
-      current += 1
-      if (current > longest) {
-        longest = current;
-      }
+      current += 1;
+        if (current > largest) {
+            largest = current;
+        }
     } else {
       current = 0;
     }
   }
 
-  return longest;
+  return largest;
 };
