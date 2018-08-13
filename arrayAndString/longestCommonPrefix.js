@@ -21,22 +21,29 @@ All given inputs are in lowercase letters a-z.
  * @param {string[]} strs
  * @return {string}
  */
+ var getShortestString = function(strs) {
+   const sortedStrs = strs.sort((a, b) => a.length - b.length); 
+   return sortedStrs[0];
+ }
+
+ var isPrefix = function(str, sub) {
+   return str.indexOf(sub) === 0;
+ }
+
  var longestCommonPrefix = function(strs) {
-   const sortedStrs = strs.sort((a, b) => a.length - b.length);
-   var shortestString = sortedStrs[0];
-
-   for (let i = shortestString.length; i >= 0; i--) {
-     let sub = shortestString.substr(0, i);
-
-     if (strs.every((str, i) => stringIncludesSubstring(str, sub))) {
-       return sub;
-     }
-
+   if (strs.length < 1) {
+       return "";
    }
 
-   return -1;
- };
+   const shortestStr = getShortestString(strs);
 
- var stringIncludesSubstring = (str, substr) => {
-   return str.indexOf(substr) > -1;
- }
+   for (let i = shortestStr.length; i >= 0; i--) {
+     let sub = shortestStr.slice(0, i);
+
+     if (strs.every((str, i) => isPrefix(str, sub))) {
+       return sub;
+     }
+   }
+
+   return "";
+ };
